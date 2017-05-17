@@ -2,7 +2,7 @@ var listController = (function () {
 	//var todos = [];
 	counter = 0;
 	return {
-		addItem: function (item) {
+		addItem: function () {
 			//todos.push(item);
 			counter +=1;
 		},
@@ -35,17 +35,23 @@ var UIController = (function () {
 		container: '.container',
 		totalItems: '.total__items'
 	};
+	var items = listController.returnTotalItems();
 	return {
 		getInput: function () {
 			return document.querySelector(DOMstrings.inputDescription).value;
 		},
 		
-		addListItem: function () {
+		addListItem: function() {
+			var items = listController.returnTotalItems();
 			var html, newHtml, element;
 			element = DOMstrings.todosContainer;
-			html = '<div class="item clearfix"> <div class="item__description">%description%</div><div class="right clearfix"><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+			var colors = ['#FFBE0B', '#FB5607', '#FF006E', '#8338EC', '#3A86FF'];
+			var random_color = colors[Math.floor(Math.random() * colors.length)];
+			html = '<div class="item" id="%id%" style="%style%"> <div class="item__description">%description%</div><div class="right"><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
 			newHtml = html.replace('%description%', document.querySelector(DOMstrings.inputDescription).value);
-			document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
+			newHtml = newHtml.replace('%id%', 'item-' + (items));
+			newHtml = newHtml.replace('%style%', 'background-color:' + random_color);
+			document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);	
 		},
 		
 		clearField: function () {
@@ -54,17 +60,22 @@ var UIController = (function () {
 		},
 
 		displayTotalItems: function () {
-			var items = listController.returnTotalItems();
-			if (items < 2) {
-				document.querySelector(DOMstrings.totalItems).textContent = items + ' thing';
-			} else {
+		var items = listController.returnTotalItems();
+			if (items == 0) {
+				document.querySelector(DOMstrings.totalItems).textContent = 'nothing';
+			}
+			else if (items == 1){
+				document.querySelector(DOMstrings.totalItems).textContent = ' 1 thing';
+			}
+			else {
 				document.querySelector(DOMstrings.totalItems).textContent = items + ' things';
 			}
 		},
 
 		getDOMstrings: function () {
 			return DOMstrings;
-		}
+		},
+		
 	};
 
 })();
@@ -87,11 +98,9 @@ var controller = (function (listCtrl, UICtrl) {
 	};
 
 	var ctrlAddItem = function () {
-		var input, newItem;
-		input = UICtrl.getInput();
 		if (document.querySelector(DOM.inputDescription).value !== '') {
-			newItem = listCtrl.addItem(input);
-			UICtrl.addListItem(newItem);
+			listCtrl.addItem();
+			UICtrl.addListItem();
 			UICtrl.clearField();
 			UICtrl.displayTotalItems();
 		}
