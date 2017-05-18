@@ -1,6 +1,6 @@
 var listController = (function() {
     //var todos = [];
-    counter = 0;
+    counter = 3;
     return {
         addItem: function() {
             //todos.push(item);
@@ -42,16 +42,16 @@ var UIController = (function() {
             element = DOMstrings.todosContainer;
             var colors = ['#FFBE0B', '#FB5607', '#FF006E', '#8338EC', '#3A86FF'];
             var gradients = [
-            'linear-gradient(to bottom, rgba(255,190,11, 0.9) 0%, rgba(255,190,11, 0.5) 100%)', 
-            'linear-gradient(to bottom, rgba(251, 86, 7, 0.9) 0%, rgba(251, 86, 7, 0.5) 100%)',
-            'linear-gradient(to bottom, rgba(255,0,110, 0.9) 0%, rgba(255,0,110, 0.5) 100%)',
-            'linear-gradient(to bottom, rgba(131, 56, 236, 0.9) 0%, rgba(131, 56, 236, 0.5) 100%)',
-            'linear-gradient(to bottom, rgba(58,134,255, 0.9) 0%, rgba(58,134,255, 0.5) 100%)'
+            'linear-gradient(to bottom, rgba(255,190,11, 1) 0%, rgba(255,190,11, 0.8) 100%)', 
+            'linear-gradient(to bottom, rgba(251, 86, 7, 1) 0%, rgba(251, 86, 7, 0.8) 100%)',
+            'linear-gradient(to bottom, rgba(255,0,110, 1) 0%, rgba(255,0,110, 0.8) 100%)',
+            'linear-gradient(to bottom, rgba(131, 56, 236, 1) 0%, rgba(131, 56, 236, 0.8) 100%)',
+            'linear-gradient(to bottom, rgba(58,134,255, 1) 0%, rgba(58,134,255, 0.8) 100%)'
              ]
             var random_gradient = gradients[Math.floor(Math.random() * gradients.length)];
-            html = '<div class="item" style="%style%"> <div class="item__description">%description%</div><div class="right"><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>';
+            html = '<div class="item" style="%style%"> <div class="item__description">%description%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-trash-outline"></i></button></div></div>';
             newHtml = html.replace('%description%', document.querySelector(DOMstrings.inputDescription).value);
-            newHtml = newHtml.replace('%style%', 'background:' + random_gradient + ', url(back.png)') ;
+            newHtml = newHtml.replace('%style%', 'background:' + random_gradient) ;
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
         },
         clearField: function() {
@@ -116,10 +116,11 @@ var controller = (function(listCtrl, UICtrl) {
     };
     var showAddField = function() {
         document.querySelector(DOM.addField).style.display = 'block';
+        document.querySelector(DOM.inputDescription).focus();
     }
     var ctrlDeleteItem = function(e) {
-        var todo = e.target.parentNode.parentNode.parentNode.parentNode;
-        if (e.target && e.target.className === "ion-ios-close-outline") {
+        var todo = e.target.parentNode.parentNode.parentNode;
+        if (e.target && e.target.className === "ion-ios-trash-outline") {
             todo.parentNode.removeChild(todo);
             listCtrl.deleteItem();
         }

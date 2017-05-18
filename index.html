@@ -1,37 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Baloo" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Montserrat+Alternates:200,300,400,700|Quicksand" rel="stylesheet">
-<link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
-
-<link type="text/css" rel="stylesheet" href="style.css">
-<title>To do list</title>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600" rel="stylesheet" type="text/css"/>
+  <link href="https://fonts.googleapis.com/css?family=Baloo" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat+Alternates:200,300,400,700|Quicksand" rel="stylesheet"/>
+  <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css"/>
+  <link type="text/css" rel="stylesheet" href="style.css"/>
+  <title>To do list</title>
 </head>
-<body><div class="main-container">
-<div class="top">
-  <div class="title">
-   <h1 id="date">%date%</h1>
-    <h2>You've got <span class="total__items">%items%</span> to do today!</h2>
-  </div>
-  <button class="add__btn">+</button>
-</div>
-<div class="bottom">
-  <div class="add">
-    <div class="add__container">
-      <input type="text" class="add__description" placeholder="What would you like to do today?">
-    </div>
-  </div>
-  <div class="container clearfix">
-    <div class="todos">
-      <div class="todos__list">
-
+<body>
+  <div class="wrapper">
+    <div class="main-container">
+      <div class="top">
+        <div class="title">
+         <h1 id="date">%date%</h1>
+         <h2>You've got <span class="total__items">%items%</span> to do today!</h2>
+       </div>
+       <button class="add__btn">+</button>
+     </div>
+     <div class="bottom">
+      <div class="add">
+        <div class="add__container">
+          <input type="text" class="add__description" placeholder="What would you like to do today?">
+        </div>
+      </div>
+      <div class="container clearfix">
+        <div class="todos">
+          <div class="todos">
+            <div class="todos__list">
+              <div class="item" style="background:linear-gradient(to bottom, rgba(255,190,11, 1) 0%, rgba(255,190,11, 0.8) 100%)"> 
+                <div class="item__description">Walk the dog</div>
+                <div class="item__delete">
+                  <button class="item__delete--btn">
+                    <i class="ion-ios-trash-outline"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="item" style="background:linear-gradient(to bottom, rgba(255,0,110, 1) 0%, rgba(255,0,110, 0.8) 100%)"> 
+                <div class="item__description">Buy groceries</div>
+                <div class="item__delete"><button class="item__delete--btn">
+                  <i class="ion-ios-trash-outline"></i>
+                </button>
+              </div>
+            </div>
+            <div class="item" style="background:linear-gradient(to bottom, rgba(131, 56, 236, 1) 0%, rgba(131, 56, 236, 0.8) 100%)"> 
+              <div class="item__description">Book a doctor's appointment</div>
+              <div class="item__delete">
+                <button class="item__delete--btn">
+                  <i class="ion-ios-trash-outline"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div></div>
-<script src="app.js"></script>
+  </div></div></div>
+  <script src="app.js"></script>
 </body>
 </html>
