@@ -60,11 +60,13 @@ body {
 
 .top {
     height: 150px;
-    background: linear-gradient(to bottom, rgba(131, 56, 236, 0.9) 0%, rgba(131, 56, 236, 0.7) 100%), url(back.png);
+    background: linear-gradient(to bottom, rgba(131, 56, 236, 0.8) 0%, rgba(131, 56, 236, 0.6) 100%), url(back.png);
     position: relative;
     border-radius: 0 0 100% 100%;
     width: 140%;
     margin-left: -20%;
+    z-index: 2;
+    margin-bottom: 20px;
 }
 /* .top::before {
     content: '';
@@ -113,17 +115,20 @@ body {
     -webkit-transition: all 250ms ease;
     -o-transition: all 250ms ease;
     transition: all 250ms ease;
+    height: 100px;
+    margin-top: -40px;
+    z-index: 1;
 }
 
 .add__container {
     margin: 0 auto;
     text-align: center;
 	position: relative;
+    top: 20px;
 }
 
 .add__description {
     background-color: #f7f7f7;
-    color: inherit;
     font-family: inherit;
     font-size: 20px;
     padding: 20px 15px 12px;
@@ -174,14 +179,15 @@ body {
 	border-radius:8px;
 	font-size:18px;
 	color:#fff;
-	display:inline-block;
+	float: left;
 	margin:10px;
     position: relative;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .item__description {
-    float: left;
+    word-break: break-all;
+
 }
 .income .item__delete--btn {
     color: #fff;
