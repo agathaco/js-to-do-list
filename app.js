@@ -1,25 +1,15 @@
 var listController = (function() {
-    //var todos = [];
     counter = 3;
     return {
         addItem: function() {
-            //todos.push(item);
             counter += 1;
         },
         deleteItem: function(item) {
             counter -= 1;
-            //var i = todos.indexOf(item);
-            //if (i != -1) {
-            //todos.splice(i, 1);
-            //}
         },
         returnTotalItems: function() {
             return counter;
         },
-        testing: function() {
-            //console.log(todos);
-            console.log(counter);
-        }
     }
 })();
 var UIController = (function() {
@@ -51,7 +41,7 @@ var UIController = (function() {
             var random_gradient = gradients[Math.floor(Math.random() * gradients.length)];
             html = '<div class="item" style="%style%"> <div class="item__description">%description%</div><div class="item__delete"><button class="item__delete--btn"><i class="ion-ios-trash-outline"></i></button></div></div>';
             newHtml = html.replace('%description%', document.querySelector(DOMstrings.inputDescription).value);
-            newHtml = newHtml.replace('%style%', 'background:' + gradient_2) ;
+            newHtml = newHtml.replace('%style%', 'background:' + random_gradient) ;
             document.querySelector(element).insertAdjacentHTML('beforeend', newHtml);
         },
         clearField: function() {
@@ -92,12 +82,9 @@ var UIController = (function() {
     };
 })();
 var controller = (function(listCtrl, UICtrl) {
-	var showAdd;
     var DOM = UICtrl.getDOMstrings();
     var setupEventListeners = function() {
-   
-    		document.querySelector(DOM.inputBtn).addEventListener('click', showAddField);
-    	
+   		document.querySelector(DOM.inputBtn).addEventListener('click', showAddField);
         document.addEventListener('keypress', function(e) {
             if (e.keyCode === 13 || e.which === 13) {
                 ctrlAddItem();
@@ -115,7 +102,6 @@ var controller = (function(listCtrl, UICtrl) {
             UICtrl.addListItem();
             UICtrl.clearField();
             UICtrl.displayTotalItems();
-            
         }
     };
     var showAddField = function() {
@@ -138,12 +124,8 @@ var controller = (function(listCtrl, UICtrl) {
         init: function() {
             UICtrl.displayTotalItems();
             UICtrl.displayDate();
-            setupEventListeners();
-            showAdd = false;
+            setupEventListeners(); 
         },
-        test: function() {
-        	return showAdd;
-        }
     };
 })(listController, UIController);
 controller.init();
